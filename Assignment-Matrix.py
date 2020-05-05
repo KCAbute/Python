@@ -1,4 +1,3 @@
-from itertools import chain
 import re
 R = int(input("Enter the number of rows:"))
 C = int(input("Enter the number of columns:"))
@@ -14,15 +13,16 @@ for i in range(R):  # A for loop for row entries
         a.append(input())
     matrix.append(a)
 
-#Reading matrixcolumn wise and priting it as string:
+# Reading matrix column wise and printing it as string:
 string=''
 dig_extra = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
 for y in range(C):
     for x in range(R):
-        string+=matrix[x][y]
+        string += matrix[x][y]
         for i in dig_extra:
-           string=string.replace(str(i),' ')
-string=re.sub(r'\W+',' ',string[:-5])+string[-5:]
+            string = string.replace(str(i),' ')
+length = len(string) - len(re.sub(r'\W+', ' ', string))
+string = re.sub(r'\W+', ' ', string[:-length]) + string[-length:]
 print(string)
 
 
