@@ -1,25 +1,59 @@
-import os
-# path = "C:\\Users\\Kanchan"
-# usage = os.path.getsize(path)
-# print('size of %s' % path, usage)
-# print(usage)
-
 import shutil
 
-# os.stat("C:\\Users\\Kanchan\\newfile.txt").st_size
-path = "C:\\Users\\Kanchan"
-stat = shutil.disk_usage(path)
-print(stat)
-remain = stat[1]*100/stat[0]
-print(remain)
-# remain=64667652096*100/523611664384
-print("How much you want to fill in %")
-fill = input()
-fill_to_memory = int(fill)-int(remain)
-print(fill_to_memory)
 
-f = open('C:\\Users\\Kanchan\\newfile.txt', "wb")
-f.seek(fill_to_memory-1)
-f.write(b"\0")
-f.close()
+def memory_usage_info():
+
+    total, used, free = shutil.disk_usage("/")
+    total_mem = (total//(2**30))
+    used_mem = (used // (2 ** 30))
+    free_mem = (free //(2 ** 30))
+    storage_list = total_mem, used_mem, free_mem
+    print(storage_list)
+    return storage_list
+
+
+def mem_conversion(fill):
+
+    mem_info = memory_usage_info()
+    mem_used_in_percentage = mem_info[1]/mem_info[0]*100
+    print(mem_used_in_percentage)
+    memory_to_fill_in_gb = int(fill) - int(mem_used_in_percentage)  # here you will get number of % user want to fill
+    # need to convert that into GB now
+    in_gb = (memory_to_fill_in_gb / 100) * mem_info[0]
+    #call gb_to_bytes function to convert gb to bytes
+    in_bytes_01 = gb_to_bytes(in_gb)
+    return in_bytes_01
+    # remain=64667652096*100/523611664384
+
+
+def gb_to_bytes(in_gb):
+
+    in_byte = in_gb*1024*1024*1024
+    print(in_byte)
+    return in_byte
+
+
+def fill_memory():
+
+    print("How much you want to fill in %")
+    fill = input()  # user will enter in percentage
+    f = open('C:\\Users\\Kanchan\\newfile.txt', "wb")
+    mem_in_bytes_01 = mem_conversion(fill)
+    f.seek(int(mem_in_bytes_01)-1)
+    f.write(b"\0")
+    f.close()
+
+
+fill_memory()
+# If want to check current size
+total, used, free = shutil.disk_usage("/")
+total_mem = (total//(2**30))
+used_mem = (used // (2 ** 30))
+free_mem = (free // (2 ** 30))
+storage_list = total_mem, used_mem, free_mem
+print(storage_list)
+# Memory used in % after filling the memory as per user input.
+mem_used_in_percentage = storage_list[1]/storage_list[0]*100
+print(mem_used_in_percentage)
+
 
