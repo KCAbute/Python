@@ -28,7 +28,8 @@ count_not_within_substring = 0
 
 words_starting_with_substring = []
 words_containing_substring = []
-words_ending_with_substring= []
+words_ending_with_substring = []
+for_regex = []
 
 # Read a file
 with open('C:\\Users\\Kanchan\\PycharmProjects\\PythonAssignments\\Assignment-5-pre.txt', "r") as f:
@@ -53,6 +54,7 @@ with open('C:\\Users\\Kanchan\\PycharmProjects\\PythonAssignments\\Assignment-5-
             reg_ex = re.match(r"^.*\b(is)\b.*$", items)
             if reg_ex:
                 count_with_regex += 1
+                for_regex.append(items)
             else:
                 count_without_regex += 1
 f.close()
@@ -60,14 +62,14 @@ dict_of_count = {}
 dict_of_count["word count starting with substring "] = count_start_substring
 dict_of_count["word count containing substring "] = count_within_substring
 dict_of_count["word count ending with substring "] = count_end_with_substring
-dict_of_count["word count with regex"] = count_with_regex
-dict_of_count["word count with not regex <^.*\b(is)\b.*$>"] = count_without_regex
+dict_of_count["Count of given substring"] = count_with_regex
 dict_of_count["word count not starting with substring "] = count_not_starting_with_substring
 dict_of_count["word count not containing substring "] = count_not_within_substring
 dict_of_count["word count not ending with substring"] = count_not_ending_with_substring
 dict_of_count["words starting with "] = words_starting_with_substring
 dict_of_count["words containing "] = words_containing_substring
 dict_of_count["Words end with substring"] = words_ending_with_substring
+dict_of_count["Word without regex"] = count_with_regex
 print(dict_of_count)
 
 
