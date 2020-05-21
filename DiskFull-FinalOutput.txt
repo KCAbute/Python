@@ -1,0 +1,11 @@
+How much you want to fill in %
+ 60
+Your current memory status of c drive in GB:
+(487, 54, 432)
+mem_used_in_percentage: 11.088295687885012 %
+memory in_byte:256227011461.12 bytes
+(487, 293, 194)
+mem_used_in_percentage 60.16427104722793 %
+(487, 54, 432)
+After clearing momory 
+mem_used_in_percentage 11.088295687885012 %
