@@ -8,13 +8,21 @@
 # Note: .ppt.txt will be considered as .txt extension type
 
 list1 = ["file1.txt", "file1.pdf", "file1.xlsx", "file1.xls", "file2.txt", "file3.pdf", "file4.mp4", "file2.ppt.txt"]
-dict_to_list = {}
+final_dict = dict_to_list = {}
 
 # Lists for names and extensions
 extensions, first_names = ([] for i in range(2))
 for items in list1:
-    words = items.split(".")
+    words = items.rsplit(".", 1)
+    extensions.append(words)
+print(extensions)
+
+for items in extensions:
+    final_dict[tuple(items[1:])] = tuple(items[:1])
+print(str(final_dict))
 
 
-
-
+# use rsplit  str.rsplit(separator, maxsplit)  ==? rsplit('.', 1)   =>split string at last occurance of '.'
+# Use join
+# re.split
+# os.path.splittext(filename)
